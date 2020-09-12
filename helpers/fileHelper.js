@@ -3,24 +3,24 @@ const fs = require("fs");
 module.exports = {
   create(dir, fileName, data) {
     return new Promise((resolve, reject) => {
-      fs.open(`${dir}/${fileName}.json`, "wx", (error, fileDescriptor) => {
-        if (!error && fileDescriptor) {
+      fs.open(`${dir}/${fileName}.json`, "wx", (openError, fileDescriptor) => {
+        if (!openError && fileDescriptor) {
           const stringData = JSON.stringify(data);
-          fs.writeFile(fileDescriptor, stringData, err => {
-            if (!err) {
-              fs.close(fileDescriptor, e => {
-                if (!e) {
+          fs.writeFile(fileDescriptor, stringData, writeError => {
+            if (!writeError) {
+              fs.close(fileDescriptor, closeError => {
+                if (!closeError) {
                   resolve();
                 } else {
-                  reject(e);
+                  reject(closeError);
                 }
               });
             } else {
-              reject(err);
+              reject(writeError);
             }
           });
-        } else if (error) {
-          reject(error);
+        } else if (openError) {
+          reject(openError);
         }
       });
     });
@@ -34,3 +34,11 @@ module.exports = {
     });
   }
 };
+
+function defaultErrorHandler(error, resolve, reject) {
+  if (!error) {
+    resolve()
+  } else {
+    reject(error)
+  }
+}
