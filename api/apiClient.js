@@ -5,7 +5,7 @@ const {
   RIOT_EUW_URL,
   API_CLIENT_TIMEOUT,
   API_CLIENT_REQUEST_RATE,
-  API_CLIENT_REQUEST_TIME_FRAME,
+  API_CLIENT_REQUEST_TIME_FRAME_IN_SECONDS,
   API_CLIENT_RULE_NAME,
   API_CLIENT_RETRY_TIME
 } = require("../constants");
@@ -23,6 +23,7 @@ function requestUrl({ params, url }) {
     url += url.indexOf("?") === -1 ? "?" : "&";
     url += queryString;
   }
+  
   return url;
 }
 
@@ -46,13 +47,13 @@ module.exports = function(apiKey) {
   const queue = new Queue({
     rules: {
       [API_CLIENT_RULE_NAME]: {
-        rate: 6,
-        limit: 5,
+        rate: API_CLIENT_REQUEST_RATE,
+        limit: API_CLIENT_REQUEST_TIME_FRAME_IN_SECONDS,
         priority: 2
       }
     },
     overall: {
-      rate: 49,
+      rate: 50,
       limit: 60,
       priority: 1
     },
@@ -80,7 +81,7 @@ module.exports = function(apiKey) {
                   throw "404";
                 }
                 
-                throw error; // throw error further
+                throw error;
               });
           },
           createKey(),

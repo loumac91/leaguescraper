@@ -1,9 +1,9 @@
-const matchEndpoint = require("../../constants").MATCH_V4;
+const matchEndpoint = require("../../constants").MATCH_ENDPOINT;
 
 module.exports = function(apiClient) {
   function getMatchHistory(encryptedAccountId) {
     let lastIteration = false;
-    let beginIndex = (fetchedGames = totalGames = 0);
+    let beginIndex, fetchedGames, totalGames = 0;
     return {
       [Symbol.asyncIterator]: async function*() {
         while (totalGames >= fetchedGames && !lastIteration) {
@@ -39,7 +39,7 @@ module.exports = function(apiClient) {
     async fetchAllMatchesByEncryptedAccountId(encryptedAccountId) {
       let matches = [];
       let lastIteration = false;
-      let beginIndex = (fetchedGames = totalGames = 0);
+      let beginIndex, fetchedGames, totalGames = 0;
 
       while (totalGames >= fetchedGames) {
         console.log(beginIndex, totalGames, fetchedGames);

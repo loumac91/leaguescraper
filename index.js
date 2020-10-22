@@ -1,13 +1,12 @@
-const createApiService = require("./api/apiService");
+const { summonerEndpoint, matchEndpoint } = require("./api/apiService");
+const { mergeGameData } = require("./api/gamesService");
 const { createAsyncGenerator } = require("./helpers/functionHelper");
-const { create } = require("./helpers/fileHelper");
-const { API_KEY, DEFAULT_OUTPUT_PATH, SUMMONER_NAMES } = require("./constants");
-
-const { summonerEndpoint, matchEndpoint } = createApiService(API_KEY);
+const { createFileAsync } = require("./helpers/fileHelper");
+const { DEFAULT_OUTPUT_PATH, SUMMONER_NAMES } = require("./constants");
 
 async function writeMatchHistoryOutput(summonerName, matches) {
-  const fileName = `${summonerName}-Games`;
-  await create(DEFAULT_OUTPUT_PATH, fileName, matches);
+  const fileName = `${summonerName}-Games-${Date.now()}.json`;
+  await createFileAsync(DEFAULT_OUTPUT_PATH, fileName, matches);
 }
 
 (async () => {
@@ -46,6 +45,8 @@ async function writeMatchHistoryOutput(summonerName, matches) {
   }
 })();
 
+
+mergeGameData();
 
 // TODO
 

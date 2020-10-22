@@ -10,7 +10,7 @@ function createAsyncGenerator(promises) {
       }
     }
   };
-};
+}
 
 
 module.exports = {
