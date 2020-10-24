@@ -10,7 +10,7 @@ module.exports.SUMMONER_ENDPOINT = summonerEndpointV4;
 module.exports.MATCH_ENDPOINT = matchEndpointV4;
 
 // CONFIG
-module.exports.API_KEY = "RGAPI-40d49c47-f28f-4593-8a4a-2629254375fd";
+module.exports.API_KEY = "RGAPI-198dd1fb-03a2-4ab6-8295-af6c5b6f7061";
 module.exports.DEFAULT_OUTPUT_PATH = path.join(__dirname, "games-data");
 module.exports.API_CLIENT_TIMEOUT = 2000;
 module.exports.API_CLIENT_REQUEST_RATE = 6;
@@ -21,8 +21,8 @@ module.exports.API_CLIENT_RULE_NAME = "riotApi";
 // SUMMONERS
 module.exports.SUMMONER_NAMES = [
   "Peduran",
-  "YonnyNoJs",
-  "AugustinebN",
+  // "YonnyNoJs",
+  // "AugustinebN",
   "Pyr0mani4c",
   "Tempest13",
   "gwai",

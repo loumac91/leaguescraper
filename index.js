@@ -18,9 +18,7 @@ async function writeMatchHistoryOutput(summonerName, matches) {
     let matchHistory = {};
     for await (const summoner of createAsyncGenerator(summoners)) {
       try {
-        for await (const matches of matchEndpoint.getMatchHistory(
-          summoner.accountId
-        )) {
+        for await (const matches of matchEndpoint.getMatchHistory(summoner.accountId)) {
           if (!matchHistory[summoner.name]) {
             matchHistory[summoner.name] = [];
           }
@@ -46,7 +44,6 @@ async function writeMatchHistoryOutput(summonerName, matches) {
 })();
 
 
-mergeGameData();
 
 // TODO
 

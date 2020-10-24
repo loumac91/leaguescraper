@@ -21,6 +21,7 @@ async function getSummonerGameFilesMap() {
   });
 }
 
+// Overloaded with responsibility
 async function mergeGameData() {
   const summonerGamesMap = await getSummonerGameFilesMap();
 
