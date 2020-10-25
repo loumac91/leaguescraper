@@ -41,9 +41,7 @@ async function writeMatchHistoryOutput(summonerName, matches) {
   } catch (e) {
     console.log(`Something went wrong. Error: ${e}`);
   }
-})();
-
-
+});
 
 // TODO
 

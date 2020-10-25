@@ -2,3 +2,4 @@
 /games-data
 /.vscode
 *.log
+.env
